@@ -4,20 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class Note implements Serializable {
     @Id
     @Column(nullable = false, updatable = false)
     private Long id;
-    @Column(nullable = false, updatable = false)
-    private Date date;
+    private LocalDateTime date;
     private String noteHeader;
     private String noteContent;
 
     public Note() {}
-    public Note(Long id, Date date, String noteHeader, String noteContent) {
+    public Note(Long id, LocalDateTime date, String noteHeader, String noteContent) {
         this.id = id;
         this.date = date;
         this.noteHeader = noteHeader;
@@ -28,7 +27,7 @@ public class Note implements Serializable {
         return id;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -44,7 +43,7 @@ public class Note implements Serializable {
         this.id = id;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
