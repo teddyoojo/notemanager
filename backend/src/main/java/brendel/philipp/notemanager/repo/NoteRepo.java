@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface NoteRepo extends JpaRepository<Note, Long> {
 
-    Optional<Note> findNoteByDate(LocalDateTime date);
+    Optional<Note> findNoteByDate(String date);
 }

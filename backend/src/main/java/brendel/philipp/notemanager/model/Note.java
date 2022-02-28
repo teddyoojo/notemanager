@@ -1,24 +1,20 @@
 package brendel.philipp.notemanager.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Entity
 public class Note implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-    private LocalDateTime date;
+    private String date;
     private String noteHeader;
     private String noteContent;
 
     public Note() {}
-    public Note(Long id, LocalDateTime date, String noteHeader, String noteContent) {
-        this.id = id;
-        this.date = date;
+    public Note(String noteHeader, String noteContent) {
         this.noteHeader = noteHeader;
         this.noteContent = noteContent;
     }
@@ -27,7 +23,7 @@ public class Note implements Serializable {
         return id;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -43,7 +39,7 @@ public class Note implements Serializable {
         this.id = id;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

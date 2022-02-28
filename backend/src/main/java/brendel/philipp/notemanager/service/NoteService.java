@@ -21,10 +21,10 @@ public class NoteService {
 
     //hopefully works, saves current date to the note, can be extended to time aswell
     public Note addNote(Note note) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd ");
         LocalDateTime now = LocalDateTime.now();
-        dtf.format(now);
-        note.setDate(now);
+        note.setDate(dtf.format(now));
+
         return noteRepo.save(note);
     }
 
@@ -37,9 +37,9 @@ public class NoteService {
     }
 
     //hopefully works, search has to be exact
-    public Note findNoteByDate(LocalDateTime searchDate) {
+    public Note findNoteByDate(LocalDateTime date) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");
-        dtf.format(searchDate);
+        String searchDate = dtf.format(date);
         return noteRepo.findNoteByDate(searchDate).orElseThrow(() -> new UserNotFoundException("Note by date " + searchDate + " was not found")); //creating and throwing Exception
 
     }
