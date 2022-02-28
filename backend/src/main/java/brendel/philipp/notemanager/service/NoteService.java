@@ -19,6 +19,7 @@ public class NoteService {
         this.noteRepo = noteRepo;
     }
 
+    //hopefully works, saves current date to the note, can be extended to time aswell
     public Note addNote(Note note) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
@@ -35,6 +36,7 @@ public class NoteService {
         return noteRepo.save(note);
     }
 
+    //hopefully works, search has to be exact
     public Note findNoteByDate(LocalDateTime searchDate) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");
         dtf.format(searchDate);
