@@ -2,10 +2,12 @@ package brendel.philipp.notemanager;
 
 import brendel.philipp.notemanager.model.Note;
 import brendel.philipp.notemanager.service.NoteService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,10 +26,11 @@ public class NoteController {
         return new ResponseEntity<>(notes, HttpStatus.OK);
     }
     @GetMapping("/find/{searchDate}")
-    public ResponseEntity<Note> getNoteByDate (@PathVariable("searchDate")LocalDateTime searchDate) {
+    public ResponseEntity<Note> getNoteByDate (@PathVariable("searchDate") LocalDateTime searchDate) {
         Note note = noteService.findNoteByDate(searchDate);
         return new ResponseEntity<>(note, HttpStatus.OK);
     }
+
 
     @PostMapping("/add")
     public ResponseEntity<Note> addNote(@RequestBody Note note){

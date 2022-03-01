@@ -2,6 +2,7 @@ package brendel.philipp.notemanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 public class Note implements Serializable {
@@ -9,7 +10,7 @@ public class Note implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-    private String date;
+    private LocalDateTime date;
     private String noteHeader;
     private String noteContent;
 
@@ -23,7 +24,7 @@ public class Note implements Serializable {
         return id;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -39,7 +40,7 @@ public class Note implements Serializable {
         this.id = id;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
