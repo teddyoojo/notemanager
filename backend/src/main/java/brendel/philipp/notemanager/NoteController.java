@@ -25,9 +25,9 @@ public class NoteController {
         List<Note> notes = noteService.findAllNotes();
         return new ResponseEntity<>(notes, HttpStatus.OK);
     }
-    @GetMapping("/find/{searchDate}")
-    public ResponseEntity<Note> getNoteByDate (@PathVariable("searchDate") LocalDateTime searchDate) {
-        Note note = noteService.findNoteByDate(searchDate);
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Note> getNoteById (@PathVariable("id") Long id) {
+        Note note = noteService.findNoteById(id);
         return new ResponseEntity<>(note, HttpStatus.OK);
     }
 

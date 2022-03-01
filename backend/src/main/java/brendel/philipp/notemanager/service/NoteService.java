@@ -35,8 +35,8 @@ public class NoteService {
     }
 
     //search has to be exact date
-    public Note findNoteByDate(LocalDateTime date) {
-        return noteRepo.findNoteByDate(date).orElseThrow(() -> new UserNotFoundException("Note by date " + date + " was not found")); //creating and throwing Exception
+    public Note findNoteById(Long id) {
+        return noteRepo.findNoteById(id).orElseThrow(() -> new UserNotFoundException("Note by ID " + id + " was not found")); //creating and throwing Exception
     }
 
 
