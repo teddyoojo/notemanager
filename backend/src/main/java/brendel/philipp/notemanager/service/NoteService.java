@@ -1,14 +1,11 @@
 package brendel.philipp.notemanager.service;
 
-import brendel.philipp.notemanager.exceptions.UserNotFoundException;
+import brendel.philipp.notemanager.exceptions.NoteNotFoundException;
 import brendel.philipp.notemanager.model.Note;
 import brendel.philipp.notemanager.repo.NoteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -35,7 +32,7 @@ public class NoteService {
     }
 
     public Note findNoteById(Long id) {
-        return noteRepo.findNoteById(id).orElseThrow(() -> new UserNotFoundException("Note by ID " + id + " was not found")); //creating and throwing Exception
+        return noteRepo.findNoteById(id).orElseThrow(() -> new NoteNotFoundException("Note by ID " + id + " was not found")); //creating and throwing Exception
     }
 
 
