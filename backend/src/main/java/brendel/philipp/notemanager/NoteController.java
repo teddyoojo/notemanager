@@ -2,7 +2,6 @@ package brendel.philipp.notemanager;
 
 import brendel.philipp.notemanager.model.Note;
 import brendel.philipp.notemanager.service.NoteService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

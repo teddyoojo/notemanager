@@ -34,7 +34,6 @@ public class NoteService {
         return noteRepo.save(note);
     }
 
-    //search has to be exact date
     public Note findNoteById(Long id) {
         return noteRepo.findNoteById(id).orElseThrow(() -> new UserNotFoundException("Note by ID " + id + " was not found")); //creating and throwing Exception
     }
