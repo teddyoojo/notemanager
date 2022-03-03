@@ -22,6 +22,7 @@ export class NotebookComponent implements OnInit {
   faPenToSquare = faPenToSquare;
   faTrashCan = faTrashCan;
   public deleteNote: Note;
+  public updateNote: Note;
 
   constructor(private noteService: NoteService) {}
 
@@ -71,6 +72,45 @@ export class NotebookComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         alert(error.message);
+      },
+    });
+  }
+
+  public openUpdateModal(note: Note): void {
+    const element = document.getElementById('updateNoteModal');
+    this.updateNote = note;
+    element?.setAttribute('data-target', '#updateNoteModal');
+    element?.classList.toggle('is-active');
+  }
+
+  public closeUpdateModal(): void {
+    const element = document.getElementById('updateNoteModal');
+    element?.classList.toggle('is-active');
+  }
+  public onUpdateNote(
+    noteData: {
+      noteHeader: any;
+      noteContent: any;
+    },
+    noteId: any,
+    noteDate: any
+  ) {
+    const note: Note = new Note();
+    note.id = noteId;
+    note.date = noteDate;
+    note.noteHeader = noteData.noteHeader;
+    note.noteContent = noteData.noteContent;
+    this.noteService.updateNote(note).subscribe({
+      next: (response: Note) => {
+        this.getNotes();
+      },
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+      },
+      complete: () => {
+        //clear form and close it
+        this.noteForm.reset();
+        this.closeUpdateModal();
       },
     });
   }

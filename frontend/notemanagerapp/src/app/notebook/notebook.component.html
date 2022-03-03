@@ -2,9 +2,11 @@
   src="https://kit.fontawesome.com/dfb02d7364.js"
   crossorigin="anonymous"
 ></script>
+<!--ADD NOTE BUTTON-->
 <button class="button is-primary" (click)="toggleAddModal()">
   Click here to add a Note!
 </button>
+<!--ENTIRE NOTE LAYOUT-->
 <div class="columns is-multiline">
   <div
     class="column is-4 has-background-info is-offset-1"
@@ -20,7 +22,7 @@
           </p>
           <div class="columns">
             <div class="column is-offset-9">
-              <button class="button is-info">
+              <button class="button is-info" (click)="openUpdateModal(note)">
                 <fa-icon [icon]="faPenToSquare"></fa-icon>
               </button>
             </div>
@@ -35,6 +37,7 @@
     </div>
   </div>
 </div>
+<!-- ADD NOTE MODAL-->
 <div id="addNoteModal" class="modal">
   <div class="modal-background"></div>
   <div class="modal-content">
@@ -74,5 +77,50 @@
     class="modal-close is-large"
     aria-label="close"
     (click)="toggleAddModal()"
+  ></button>
+</div>
+<!-- UPDATE MODAL-->
+<div id="updateNoteModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <form
+      [formGroup]="noteForm"
+      (ngSubmit)="
+        onUpdateNote(noteForm.value, updateNote?.id, updateNote?.date)
+      "
+    >
+      <div class="box">
+        <label class="label">Note Header</label>
+        <textarea
+          class="textarea"
+          formControlName="noteHeader"
+          type="text"
+          rows="2"
+          onkeypress="return even.keyCode != 13"
+          required
+        ></textarea>
+        <label class="label">Note Content</label>
+        <textarea
+          class="textarea"
+          formControlName="noteContent"
+          type="text"
+          rows="10"
+          onkeypress="return event.keyCode != 13"
+          required
+        ></textarea>
+        <button
+          [disabled]="noteForm.invalid"
+          class="button is-info"
+          type="submit"
+        >
+          Submit!
+        </button>
+      </div>
+    </form>
+  </div>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    (click)="closeUpdateModal()"
   ></button>
 </div>
