@@ -11,7 +11,9 @@ public class Note implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
     private LocalDateTime date;
+    @Lob
     private String noteHeader;
+    @Lob
     private String noteContent;
 
     public Note() {}

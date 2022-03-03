@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Note } from './note';
 import { NoteService } from './note.service';
 import {
@@ -30,6 +30,7 @@ export class NotebookComponent implements OnInit {
     this.getNotes();
   }
 
+  //load all notes on start
   public getNotes(): void {
     this.noteService.getNotes().subscribe({
       next: (response: Note[]) => {
@@ -41,11 +42,13 @@ export class NotebookComponent implements OnInit {
     });
   }
 
+  //start/close the add Note Modal
   public toggleAddModal(): void {
     const element = document.getElementById('addNoteModal');
     element?.classList.toggle('is-active');
   }
 
+  //takes an entered note, passes it to the service, then resets and closes the modal
   public onAddNote(noteData: { noteHeader: any; noteContent: any }) {
     const note: Note = new Note();
     note.noteHeader = noteData.noteHeader;
@@ -65,6 +68,7 @@ export class NotebookComponent implements OnInit {
     });
   }
 
+  //takes a noteId and passes the ID to the service to delete said note
   public onDeleteNote(noteId: number) {
     this.noteService.deleteNote(noteId).subscribe({
       next: (response: void) => {
@@ -76,17 +80,22 @@ export class NotebookComponent implements OnInit {
     });
   }
 
+  //opens the update modal and parses data to the modal
   public openUpdateModal(note: Note): void {
     const element = document.getElementById('updateNoteModal');
     this.updateNote = note;
-    element?.setAttribute('data-target', '#updateNoteModal');
+    this.noteForm.get('noteHeader')?.setValue(note.noteHeader);
+    this.noteForm.get('noteContent')?.setValue(note.noteContent);
     element?.classList.toggle('is-active');
   }
 
+  //closes the update modal
   public closeUpdateModal(): void {
     const element = document.getElementById('updateNoteModal');
     element?.classList.toggle('is-active');
   }
+
+  //takes a full note, creates a new note, passes it to the service that updates the note, then resets and closes
   public onUpdateNote(
     noteData: {
       noteHeader: any;
