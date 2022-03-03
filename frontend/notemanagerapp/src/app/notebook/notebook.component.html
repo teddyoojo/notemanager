@@ -2,7 +2,7 @@
   src="https://kit.fontawesome.com/dfb02d7364.js"
   crossorigin="anonymous"
 ></script>
-<button class="button is-primary" (click)="toggleModal()">
+<button class="button is-primary" (click)="toggleAddModal()">
   Click here to add a Note!
 </button>
 <div class="columns is-multiline">
@@ -25,7 +25,7 @@
               </button>
             </div>
             <div class="column">
-              <button class="button is-danger">
+              <button class="button is-danger" (click)="onDeleteNote(note.id)">
                 <fa-icon [icon]="faTrashCan"></fa-icon>
               </button>
             </div>
@@ -39,14 +39,40 @@
   <div class="modal-background"></div>
   <div class="modal-content">
     <form [formGroup]="noteForm" (ngSubmit)="onAddNote(noteForm.value)">
-      <input class="input" formControlName="noteHeader" type="text" />
-      <input class="input" formControlName="noteContent" type="text" />
-      <button class="button is-info" type="submit">Submit!</button>
+      <div class="box">
+        <label class="label">Note Header</label>
+        <textarea
+          class="textarea"
+          formControlName="noteHeader"
+          type="text"
+          placeholder="Enter Note Header"
+          rows="2"
+          onkeypress="return even.keyCode != 13"
+          required
+        ></textarea>
+        <label class="label">Note Content</label>
+        <textarea
+          class="textarea"
+          formControlName="noteContent"
+          type="text"
+          placeholder="Enter Note content"
+          rows="10"
+          onkeypress="return event.keyCode != 13"
+          required
+        ></textarea>
+        <button
+          [disabled]="noteForm.invalid"
+          class="button is-info"
+          type="submit"
+        >
+          Submit!
+        </button>
+      </div>
     </form>
   </div>
   <button
     class="modal-close is-large"
     aria-label="close"
-    (click)="toggleModal()"
+    (click)="toggleAddModal()"
   ></button>
 </div>
