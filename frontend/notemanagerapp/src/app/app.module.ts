@@ -6,19 +6,15 @@ import { NotebookComponent } from './notebook/notebook.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotebookComponent
-  ],
+  declarations: [AppComponent, NotebookComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
