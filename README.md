@@ -9,6 +9,7 @@ This is the frontpage I created using Bulma:
 The Web-App has a few different functions.
 The first function of the Website is to "Add a Note". Upon pressing the "Click here to add a Note!" Button, a Modal will open up,
 allowing the User to enter a new Note, made up of a note header and note content.
+An ID and a LocalDateTime is automatically added to the note, and the date is displayed on the note.
 
 ![](https://github.com/teddyoojo/notemanager/blob/main/docs/images/addnotemodal.png)
 
