@@ -11,3 +11,6 @@
 5. Implement specific cancel buttons on modals instead of only offering the standard X to exit on the top right
 
 6. Implement a search function
+
+7. Frontend and Backend need to be permanently hosted 
+
