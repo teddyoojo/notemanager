@@ -1,4 +1,4 @@
-# Notemanager-App
+# Notebook-App
 
 This is my very first Web App, using Spring Boot, Angular and Bulma
 
